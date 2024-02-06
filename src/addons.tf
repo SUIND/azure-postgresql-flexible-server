@@ -6,8 +6,7 @@ resource "azurerm_postgresql_flexible_server_configuration" "pgbouncer" {
 }
 
 resource "azurerm_postgresql_flexible_server_configuration" "pgvector" {
-  count     = var.addons.pgvector ? 1 : 0
   name      = "azure.extensions"
   server_id = azurerm_postgresql_flexible_server.main.id
-  value     = "VECTOR"
+  value     = "VECTOR,PGCRYPTO"
 }

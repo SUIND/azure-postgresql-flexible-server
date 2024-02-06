@@ -147,6 +147,11 @@ params:
             - "13"
             - "12"
             - "11"
+        allow_public_access:
+          title: Disable Firewall
+          type: boolean
+          default: false
+          $md.immutable: true
         username:
           title: Username
           description: The administrator login for the PostgreSQL Flexible Server. Username cannot be changed after creation. (Username cannot be 'admin', 'root', 'administrator', 'username', 'azure_superuser', 'azure_pg_admin', 'guest', or 'public'.)
@@ -249,11 +254,11 @@ params:
           description: PgBouncer is a connection pooler for PostgreSQL. It reduces the number of connections to the database, which can improve performance.
           type: boolean
           default: false
-        pgvector:
-          title: PgVector
-          description: PgVector extension adds an open-source vector similarity search to PostgreSQL.
-          type: boolean
-          default: false
+        # pgvector:
+        #   title: PgVector
+        #   description: PgVector extension adds an open-source vector similarity search to PostgreSQL.
+        #   type: boolean
+        #   default: false
     monitoring:
       type: object
       title: Monitoring
@@ -327,6 +332,7 @@ ui:
   database:
     ui:order:
       - postgres_version
+      - disable_firewall
       - sku_name
       - storage_mb
       - username
@@ -348,7 +354,7 @@ ui:
   addons:
     ui:order:
       - pgbouncer
-      - pgvector
+      # - pgvector
       - "*"
   monitoring:
     ui:order:
